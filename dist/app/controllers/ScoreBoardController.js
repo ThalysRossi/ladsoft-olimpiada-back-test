@@ -1,4 +1,4 @@
-// import * as Yup from 'yup';
+"use strict";// import * as Yup from 'yup';
 const connection = require('../../database/connection');
 const Logger = require('../../lib/logger');
 
@@ -84,7 +84,7 @@ class ScoreBoardController {
     const [rightAnswer] = await connection('challenges')
       .select('challenges.*')
       .where('challenges.id', '=', id);
-    //let insert = {};
+    let insert = {};
     if (answer === rightAnswer.answer && rightAnswer.level === 1) {
       insert = {
         user_id: req.userId,
