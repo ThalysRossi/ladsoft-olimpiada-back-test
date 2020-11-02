@@ -43,7 +43,7 @@ class ScoreBoardController {
 
     let points = 0;
     for (let row of rows) {
-      row.point === 1 ? points++ : '';
+      row.point !== 0 ? points++ : '';
     }
 
     const userPoints = {
@@ -84,6 +84,7 @@ class ScoreBoardController {
     const [rightAnswer] = await connection('challenges')
       .select('challenges.*')
       .where('challenges.id', '=', id);
+    
     let receivedInsert;
     
     if (answer === rightAnswer.answer && rightAnswer.level === 1) {
