@@ -84,9 +84,10 @@ class ScoreBoardController {
     const [rightAnswer] = await connection('challenges')
       .select('challenges.*')
       .where('challenges.id', '=', id);
-    //let insert = {};
+    let receivedInsert;
+    
     if (answer === rightAnswer.answer && rightAnswer.level === 1) {
-      insert = {
+      receivedInsert = {
         user_id: req.userId,
         challenge_id: id,
         point: 1,
@@ -94,7 +95,7 @@ class ScoreBoardController {
       };
     }
     else if (answer === rightAnswer.answer && rightAnswer.level === 2) {
-      insert = {
+      receivedInsert = {
         user_id: req.userId,
         challenge_id: id,
         point: 3,
@@ -102,7 +103,7 @@ class ScoreBoardController {
       };
     }
     else if (answer === rightAnswer.answer && rightAnswer.level === 3) {
-        insert = {
+        receivedInsert = {
         user_id: req.userId,
         challenge_id: id,
         point: 6,
@@ -110,14 +111,14 @@ class ScoreBoardController {
       };
     }
     else { 
-      insert = {
+      receivedInsert = {
         user_id: req.userId,
         challenge_id: id,
         point: 0,
         answer,
       };
     }
-
+    const insert = receivedInsert;
     /*const insert = {
       user_id: req.userId,
       challenge_id: id,
