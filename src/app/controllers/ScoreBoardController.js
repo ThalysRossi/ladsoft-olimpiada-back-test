@@ -14,7 +14,7 @@ class ScoreBoardController {
         'users.semester',
         'users.course'
       )
-      .count('score.point', { as: 'points' })
+      .sum('score.point', { as: 'points' })
       .join('users', 'users.id', 'score.user_id')
       .groupBy('score.user_id')
       .orderBy('points', 'desc');
@@ -138,7 +138,7 @@ class ScoreBoardController {
 
     const userPoints = await connection('score')
       .select('score.*')
-      .count('score.point', { as: 'points' })
+      .sum('score.point', { as: 'points' })
       .where({ 'score.user_id': req.userId })
       .orderBy('score.challenge_id', 'asc');
 
