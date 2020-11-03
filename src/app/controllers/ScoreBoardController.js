@@ -138,6 +138,7 @@ class ScoreBoardController {
 
     const userPoints = await connection('score')
       .select('score.*')
+      .count('score.point', { as: 'points' })
       .where({ 'score.user_id': req.userId })
       .orderBy('score.challenge_id', 'asc');
 
