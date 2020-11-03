@@ -43,7 +43,7 @@ class ScoreBoardController {
 
     let points = 0;
     for (let row of rows) {
-      row.point !== 0 ? points++ : '';
+      row.point !== 0 ? points = (points + row.point) : '';
     }
 
     const userPoints = {
